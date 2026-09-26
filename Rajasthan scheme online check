@@ -128,7 +128,7 @@
 
     <div class="container">
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="योजना या सेवा का नाम खोजें..." onkeyup="filterSchemes()">
+            <input type="text" id="searchInput" placeholder="योजना या सेवा का नाम खोजें..." onkeyup="filterSchemes()" aria-label="योजना या सेवा खोजें">
         </div>
 
         <div class="cards-list" id="schemesList">
@@ -137,49 +137,49 @@
                     <h3>राशन कार्ड (Ration Card Status)</h3>
                     <p>खाद्य सुरक्षा सूची, राशन कार्ड विवरण और पात्रता चेक करें।</p>
                 </div>
-                <a href="https://food.rajasthan.gov.in/" target="_blank" class="btn-link">ओपन करें ↗</a>
+                <a href="https://food.rajasthan.gov.in/" target="_blank" rel="noopener noreferrer" class="btn-link">ओपन करें ↗</a>
             </div>
             <div class="card">
                 <div class="card-info">
                     <h3>पीएम किसान सम्मान निधि (PM Kisan)</h3>
                     <p>किस्त स्टेटस, e-KYC और नया किसान पंजीकरण जांचें।</p>
                 </div>
-                <a href="https://pmkisan.gov.in/" target="_blank" class="btn-link">ओपन करें ↗</a>
+                <a href="https://pmkisan.gov.in/" target="_blank" rel="noopener noreferrer" class="btn-link">ओपन करें ↗</a>
             </div>
             <div class="card">
                 <div class="card-info">
                     <h3>जन आधार कार्ड (Jan Aadhaar Portal)</h3>
                     <p>जन आधार स्टेटस, ई-कार्ड डाउनलोड और सुधार की स्थिति।</p>
                 </div>
-                <a href="https://janaadhaar.rajasthan.gov.in/" target="_blank" class="btn-link">ओपन करें ↗</a>
+                <a href="https://janaadhaar.rajasthan.gov.in/" target="_blank" rel="noopener noreferrer" class="btn-link">ओपन करें ↗</a>
             </div>
             <div class="card">
                 <div class="card-info">
                     <h3>अपना खाता / जमाबंदी (Apna Khata)</h3>
                     <p>खसरा, खतौनी, जमाबंदी नकल और भू-अभिलेख ऑनलाइन देखें।</p>
                 </div>
-                <a href="https://apnakhata.rajasthan.gov.in/" target="_blank" class="btn-link">ओपन करें ↗</a>
+                <a href="https://apnakhata.rajasthan.gov.in/" target="_blank" rel="noopener noreferrer" class="btn-link">ओपन करें ↗</a>
             </div>
             <div class="card">
                 <div class="card-info">
                     <h3>सामाजिक सुरक्षा पेंशन (SSP Rajasthan)</h3>
                     <p>वृद्धावस्था, विधवा एवं दिव्यांग पेंशन स्टेटस चेक करें।</p>
                 </div>
-                <a href="https://ssp.rajasthan.gov.in/" target="_blank" class="btn-link">ओपन करें ↗</a>
+                <a href="https://ssp.rajasthan.gov.in/" target="_blank" rel="noopener noreferrer" class="btn-link">ओपन करें ↗</a>
             </div>
             <div class="card">
                 <div class="card-info">
                     <h3>राज किसान साथी पोर्टल (Raj Kisan Sathi)</h3>
                     <p>कृषि यंत्र अनुदान, तारबंदी, फव्वारा व बागवानी सब्सिडी।</p>
                 </div>
-                <a href="https://rajkisan.rajasthan.gov.in/" target="_blank" class="btn-link">ओपन करें ↗</a>
+                <a href="https://rajkisan.rajasthan.gov.in/" target="_blank" rel="noopener noreferrer" class="btn-link">ओपन करें ↗</a>
             </div>
             <div class="card">
                 <div class="card-info">
                     <h3>ई-मित्र पोर्टल (e-Mitra Rajasthan)</h3>
                     <p>सभी सरकारी सेवाओं और टोकन स्टेटस की ऑनलाइन जांच।</p>
                 </div>
-                <a href="https://emitra.rajasthan.gov.in/" target="_blank" class="btn-link">ओपन करें ↗</a>
+                <a href="https://emitra.rajasthan.gov.in/" target="_blank" rel="noopener noreferrer" class="btn-link">ओपन करें ↗</a>
             </div>
         </div>
 
@@ -189,15 +189,16 @@
 
         <div class="footer-links">
             <p>नोट: यह पोर्टल केवल आधिकारिक सरकारी वेबसाइट्स के सीधे लिंक प्रदान करता है।</p>
-            <p>कोई समस्या या सुझाव? <a href="mailto:your- infotechdipr.dsa@gmail.com">हमें ईमेल करें</a></p>
+            <p>कोई समस्या या सुझाव? <a href="mailto:infotechdipr.dsa@gmail.com">हमें ईमेल करें</a></p>
         </div>
     </div>
 
     <script>
         function filterSchemes() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
             const cards = document.querySelectorAll('.card');
             let visibleCount = 0;
+
             cards.forEach(card => {
                 const text = card.innerText.toLowerCase();
                 if (text.includes(query)) {
@@ -207,6 +208,7 @@
                     card.style.display = 'none';
                 }
             });
+
             document.getElementById('noResult').style.display = visibleCount === 0 ? 'block' : 'none';
         }
     </script>
