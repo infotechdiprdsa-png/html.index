@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>राजस्थान सरकारी योजनाएं पोर्टल</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #f0f4f8;
+            color: #333;
+            padding-bottom: 30px;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #ffffff;
+            padding: 24px 16px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+        }
+        header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+        .search-box {
+            margin-bottom: 20px;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            outline: none;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .search-box input:focus {
+            border-color: #2a5298;
+        }
+        .cards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 16px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+        }
+        .card-info {
+            flex: 1;
+            padding-right: 12px;
+        }
+        .card-info h3 {
+            font-size: 1.05rem;
+            color: #1e3c72;
+            margin-bottom: 4px;
+        }
+        .card-info p {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.3;
+        }
+        .btn-link {
+            background: #2a5298;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+        .btn-link:hover {
+            background: #1e3c72;
+        }
+        .no-result {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+            display: none;
+        }
+        .footer-links {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #777;
+            line-height: 1.5;
+        }
+        .footer-links a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🏛️ राजस्थान जन कल्याण पोर्टल</h1>
+        <p>राशन कार्ड, पीएम किसान व अन्य मुख्य योजनाओं के डायरेक्ट लिंक</p>
+    </header>
+
+    <div class="container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="योजना या सेवा का नाम खोजें..." onkeyup="filterSchemes()">
+        </div>
+
+        <div class="cards-list" id="schemesList">
+            <div class="card">
+                <div class="card-info">
+                    <h3>राशन कार्ड (Ration Card Status)</h3>
+                    <p>खाद्य सुरक्षा सूची, राशन कार्ड विवरण और पात्रता चेक करें।</p>
+                </div>
+                <a href="https://food.rajasthan.gov.in/" target="_blank" class="btn-link">ओपन करें ↗</a>
+            </div>
+            <div class="card">
+                <div class="card-info">
+                    <h3>पीएम किसान सम्मान निधि (PM Kisan)</h3>
+                    <p>किस्त स्टेटस, e-KYC और नया किसान पंजीकरण जांचें।</p>
+                </div>
+                <a href="https://pmkisan.gov.in/" target="_blank" class="btn-link">ओपन करें ↗</a>
+            </div>
+            <div class="card">
+                <div class="card-info">
+                    <h3>जन आधार कार्ड (Jan Aadhaar Portal)</h3>
+                    <p>जन आधार स्टेटस, ई-कार्ड डाउनलोड और सुधार की स्थिति।</p>
+                </div>
+                <a href="https://janaadhaar.rajasthan.gov.in/" target="_blank" class="btn-link">ओपन करें ↗</a>
+            </div>
+            <div class="card">
+                <div class="card-info">
+                    <h3>अपना खाता / जमाबंदी (Apna Khata)</h3>
+                    <p>खसरा, खतौनी, जमाबंदी नकल और भू-अभिलेख ऑनलाइन देखें।</p>
+                </div>
+                <a href="https://apnakhata.rajasthan.gov.in/" target="_blank" class="btn-link">ओपन करें ↗</a>
+            </div>
+            <div class="card">
+                <div class="card-info">
+                    <h3>सामाजिक सुरक्षा पेंशन (SSP Rajasthan)</h3>
+                    <p>वृद्धावस्था, विधवा एवं दिव्यांग पेंशन स्टेटस चेक करें।</p>
+                </div>
+                <a href="https://ssp.rajasthan.gov.in/" target="_blank" class="btn-link">ओपन करें ↗</a>
+            </div>
+            <div class="card">
+                <div class="card-info">
+                    <h3>राज किसान साथी पोर्टल (Raj Kisan Sathi)</h3>
+                    <p>कृषि यंत्र अनुदान, तारबंदी, फव्वारा व बागवानी सब्सिडी।</p>
+                </div>
+                <a href="https://rajkisan.rajasthan.gov.in/" target="_blank" class="btn-link">ओपन करें ↗</a>
+            </div>
+            <div class="card">
+                <div class="card-info">
+                    <h3>ई-मित्र पोर्टल (e-Mitra Rajasthan)</h3>
+                    <p>सभी सरकारी सेवाओं और टोकन स्टेटस की ऑनलाइन जांच।</p>
+                </div>
+                <a href="https://emitra.rajasthan.gov.in/" target="_blank" class="btn-link">ओपन करें ↗</a>
+            </div>
+        </div>
+
+        <div class="no-result" id="noResult">
+            कोई योजना नहीं मिली। कृपया दोबारा चेक करें।
+        </div>
+
+        <div class="footer-links">
+            <p>नोट: यह पोर्टल केवल आधिकारिक सरकारी वेबसाइट्स के सीधे लिंक प्रदान करता है।</p>
+            <p>कोई समस्या या सुझाव? <a href="mailto:your-email@example.com">हमें ईमेल करें</a></p>
+        </div>
+    </div>
+
+    <script>
+        function filterSchemes() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+            let visibleCount = 0;
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            document.getElementById('noResult').style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
