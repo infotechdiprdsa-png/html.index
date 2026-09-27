@@ -5,20 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>राज सेवा - राजस्थान जन कल्याण पोर्टल</title>
     <style>
-        /* कॉपी, सेलेक्शन और लॉन्ग-प्रेस ब्लॉक */
+        /* टेक्स्ट सेलेक्शन ब्लॉक, लेकिन क्लिक और लिंक्स चालू */
         *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
-            -webkit-user-select: none !important;
-            -moz-user-select: none !important;
-            -ms-user-select: none !important;
-            user-select: none !important;
-            -webkit-touch-callout: none !important;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
-        /* केवल सर्च बॉक्स में टाइपिंग की अनुमति */
+        /* इनपुट, बटन और लिंक्स पर क्लिक व टच हमेशा सक्रिय रखें */
+        input, button, a, .card, .filter-btn, .btn-view, .action-link-btn {
+            -webkit-touch-callout: default !important;
+            pointer-events: auto !important;
+            cursor: pointer;
+        }
+
         #searchInput {
             -webkit-user-select: text !important;
             user-select: text !important;
@@ -52,7 +55,6 @@
             padding: 16px;
         }
 
-        /* सर्च बार */
         .search-box {
             margin-bottom: 12px;
         }
@@ -69,7 +71,6 @@
             border-color: #1e3c72;
         }
 
-        /* कैटेगरी फिल्टर */
         .category-filter {
             display: flex;
             gap: 8px;
@@ -87,7 +88,6 @@
             font-weight: 600;
             color: #444;
             white-space: nowrap;
-            cursor: pointer;
         }
         .filter-btn.active {
             background: #1e3c72;
@@ -95,7 +95,6 @@
             border-color: #1e3c72;
         }
 
-        /* कार्ड्स लिस्ट */
         .cards-list {
             display: flex;
             flex-direction: column;
@@ -109,7 +108,10 @@
             align-items: center;
             justify-content: space-between;
             box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-            cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+        .card:active {
+            transform: scale(0.99);
         }
         .card-info {
             flex: 1;
@@ -145,10 +147,8 @@
             font-weight: 600;
             white-space: nowrap;
             border: none;
-            cursor: pointer;
         }
 
-        /* SPA विवरण दृश्य (Detail View) */
         #detailScreen {
             display: none;
         }
@@ -171,7 +171,6 @@
             padding: 8px 14px;
             border-radius: 8px;
             font-weight: 600;
-            cursor: pointer;
             font-size: 0.85rem;
         }
         .detail-title {
@@ -236,9 +235,8 @@
         }
     </style>
 </head>
-<body oncontextmenu="return false;">
+<body>
 
-    <!-- 1. होम स्क्रीन (योजनाओं की लिस्ट) -->
     <div id="homeScreen">
         <header>
             <h1>🏛️ राजस्थान जन कल्याण पोर्टल</h1>
@@ -258,9 +256,7 @@
                 <button type="button" class="filter-btn" data-category="land">भूमि व राजस्व</button>
             </div>
 
-            <div class="cards-list" id="schemesList">
-                <!-- कार्ड्स JavaScript द्वारा स्वचालित लोड होंगे -->
-            </div>
+            <div class="cards-list" id="schemesList"></div>
 
             <div class="no-result" id="noResult">
                 कोई योजना नहीं मिली। कृपया दोबारा खोजें।
@@ -273,7 +269,6 @@
         </main>
     </div>
 
-    <!-- 2. योजना विवरण स्क्रीन (SPA Detail Screen) -->
     <div id="detailScreen">
         <header>
             <h1 id="detailHeaderTitle">योजना का विवरण</h1>
@@ -302,16 +297,13 @@
     </div>
 
     <script>
-        // 1. कॉपी, लॉन्ग-प्रेस और राइट-क्लिक ब्लॉक
-        document.addEventListener('contextmenu', function(e) { e.preventDefault(); }, false);
-        document.addEventListener('selectstart', function(e) {
-            if (e.target.id !== 'searchInput') { e.preventDefault(); }
-        }, false);
-        document.addEventListener('copy', function(e) {
-            if (e.target.id !== 'searchInput') { e.preventDefault(); }
-        }, false);
+        // राइट क्लिक ब्लॉक (इनपुट को छोड़कर)
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.tagName !== 'INPUT') {
+                e.preventDefault();
+            }
+        });
 
-        // 2. सभी योजनाओं का केंद्रीय डेटाबेस
         const schemesData = [
             {
                 id: "ration-card",
@@ -420,7 +412,6 @@
             }
         ];
 
-        // 3. कार्ड्स जनरेट करना
         const schemesList = document.getElementById('schemesList');
         function renderCards() {
             schemesList.innerHTML = '';
@@ -428,25 +419,22 @@
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.setAttribute('data-category', scheme.category);
+                card.onclick = function() { navigateToDetail(scheme.id); };
                 card.innerHTML = `
-                    <div class="card-info" onclick="navigateToDetail('${scheme.id}')">
+                    <div class="card-info">
                         <span class="card-badge">${scheme.categoryLabel}</span>
                         <h3>${scheme.name}</h3>
                         <p>${scheme.shortDesc}</p>
                     </div>
-                    <button type="button" class="btn-view" onclick="navigateToDetail('${scheme.id}')">देखें ↗</button>
+                    <button type="button" class="btn-view">देखें ↗</button>
                 `;
                 schemesList.appendChild(card);
             });
         }
         renderCards();
 
-        // 4. SPA नेविगेशन एवं सुरक्षित बैक बटन लॉजिक
         const homeScreen = document.getElementById('homeScreen');
         const detailScreen = document.getElementById('detailScreen');
-
-        // शुरुआती स्टेट सेट करें
-        history.replaceState({ page: 'home' }, "");
 
         function navigateToDetail(schemeId) {
             const scheme = schemesData.find(s => s.id === schemeId);
@@ -468,29 +456,25 @@
             detailScreen.style.display = 'block';
             window.scrollTo(0, 0);
 
-            // बैक बटन के लिए हिस्ट्री में एंट्री जोड़ें
-            history.pushState({ page: 'detail', id: schemeId }, scheme.name, "");
+            history.pushState({ page: 'detail', id: schemeId }, "");
         }
 
         function navigateToHome() {
-            detailScreen.style.display = 'none';
-            homeScreen.style.display = 'block';
-            window.scrollTo(0, 0);
             if (history.state && history.state.page === 'detail') {
                 history.back();
-            }
-        }
-
-        // फ़ोन का बैक बटन दबाने पर हैंडलर
-        window.onpopstate = function(event) {
-            if (detailScreen.style.display === 'block') {
+            } else {
                 detailScreen.style.display = 'none';
                 homeScreen.style.display = 'block';
                 window.scrollTo(0, 0);
             }
+        }
+
+        window.onpopstate = function() {
+            detailScreen.style.display = 'none';
+            homeScreen.style.display = 'block';
+            window.scrollTo(0, 0);
         };
 
-        // 5. सर्च एवं फ़िल्टर लॉजिक
         const searchInput = document.getElementById('searchInput');
         const filterBtns = document.querySelectorAll('.filter-btn');
         const noResult = document.getElementById('noResult');
@@ -522,7 +506,8 @@
         searchInput.addEventListener('input', applyFilters);
 
         filterBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
                 filterBtns.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 activeCategory = this.getAttribute('data-category');
