@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>राज सेवा - राजस्थान जन कल्याण पोर्टल</title>
     <style>
-        /* कॉपी, सेलेक्शन और लॉन्ग-प्रेस पूरी तरह ब्लॉक */
+        /* कॉपी, सेलेक्शन और लॉन्ग-प्रेस ब्लॉक */
         *, *::before, *::after {
             margin: 0;
             padding: 0;
@@ -18,7 +18,7 @@
             -webkit-touch-callout: none !important;
         }
 
-        /* केवल सर्च बॉक्स में टाइप करने की अनुमति */
+        /* केवल सर्च बॉक्स में टाइपिंग की अनुमति */
         #searchInput {
             -webkit-user-select: text !important;
             user-select: text !important;
@@ -27,22 +27,22 @@
         body {
             background-color: #f0f4f8;
             color: #333;
-            padding-bottom: 40px;
+            min-height: 100vh;
         }
 
         header {
             background: linear-gradient(135deg, #1e3c72, #2a5298);
             color: #ffffff;
-            padding: 22px 16px;
+            padding: 20px 16px;
             text-align: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         header h1 {
             font-size: 1.35rem;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
         header p {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             opacity: 0.9;
         }
 
@@ -52,15 +52,16 @@
             padding: 16px;
         }
 
+        /* सर्च बार */
         .search-box {
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
         .search-box input {
             width: 100%;
             padding: 12px 14px;
             border-radius: 10px;
             border: 1px solid #ccc;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             outline: none;
             background: #fff;
         }
@@ -68,11 +69,12 @@
             border-color: #1e3c72;
         }
 
+        /* कैटेगरी फिल्टर */
         .category-filter {
             display: flex;
             gap: 8px;
             overflow-x: auto;
-            padding-bottom: 10px;
+            padding-bottom: 8px;
             margin-bottom: 14px;
             -webkit-overflow-scrolling: touch;
         }
@@ -81,7 +83,7 @@
             border: 1px solid #d0d7de;
             padding: 7px 14px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 600;
             color: #444;
             white-space: nowrap;
@@ -93,6 +95,7 @@
             border-color: #1e3c72;
         }
 
+        /* कार्ड्स लिस्ट */
         .cards-list {
             display: flex;
             flex-direction: column;
@@ -106,6 +109,7 @@
             align-items: center;
             justify-content: space-between;
             box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            cursor: pointer;
         }
         .card-info {
             flex: 1;
@@ -122,7 +126,7 @@
             font-weight: 600;
         }
         .card-info h3 {
-            font-size: 0.98rem;
+            font-size: 0.95rem;
             color: #1e3c72;
             margin-bottom: 3px;
         }
@@ -132,37 +136,98 @@
             line-height: 1.3;
         }
 
-        .btn-link {
+        .btn-view {
             background: #2a5298;
             color: #ffffff;
-            text-decoration: none;
-            padding: 10px 14px;
+            padding: 8px 12px;
             border-radius: 8px;
-            font-size: 0.82rem;
+            font-size: 0.78rem;
             font-weight: 600;
             white-space: nowrap;
-            display: inline-block;
             border: none;
             cursor: pointer;
         }
-        .btn-link:active {
-            background: #1e3c72;
+
+        /* SPA विवरण दृश्य (Detail View) */
+        #detailScreen {
+            display: none;
+        }
+        .detail-card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            margin-top: 10px;
+        }
+        .detail-top-nav {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .back-nav-btn {
+            background: #eef2f7;
+            color: #1e3c72;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .detail-title {
+            font-size: 1.15rem;
+            color: #1e3c72;
+            margin-bottom: 12px;
+        }
+        .detail-desc {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        .detail-section-title {
+            font-size: 0.95rem;
+            color: #222;
+            margin: 14px 0 6px 0;
+            font-weight: 700;
+        }
+        .detail-list {
+            padding-left: 20px;
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        .action-link-btn {
+            display: block;
+            width: 100%;
+            background: #2a5298;
+            color: #ffffff;
+            text-align: center;
+            padding: 13px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.92rem;
+            margin-top: 20px;
+            border: none;
         }
 
         .no-result {
             text-align: center;
-            padding: 25px;
+            padding: 30px;
             color: #777;
             display: none;
             font-size: 0.9rem;
         }
 
         footer {
-            margin-top: 25px;
+            margin-top: 30px;
             text-align: center;
             font-size: 0.78rem;
             color: #777;
             line-height: 1.5;
+            padding-bottom: 20px;
         }
         footer a {
             color: #2a5298;
@@ -171,103 +236,73 @@
         }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
-    <header>
-        <h1>🏛️ राजस्थान जन कल्याण पोर्टल</h1>
-        <p>मुख्य सरकारी योजनाओं के डायरेक्ट लिंक</p>
-    </header>
+    <!-- 1. होम स्क्रीन (योजनाओं की लिस्ट) -->
+    <div id="homeScreen">
+        <header>
+            <h1>🏛️ राजस्थान जन कल्याण पोर्टल</h1>
+            <p>मुख्य सरकारी योजनाओं के डायरेक्ट लिंक</p>
+        </header>
 
-    <main class="container">
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="योजना या सेवा का नाम खोजें..." autocomplete="off">
-        </div>
-
-        <div class="category-filter">
-            <button type="button" class="filter-btn active" data-category="all">सभी योजनाएं</button>
-            <button type="button" class="filter-btn" data-category="kisan">किसान कल्याण</button>
-            <button type="button" class="filter-btn" data-category="pension">पेंशन व सुरक्षा</button>
-            <button type="button" class="filter-btn" data-category="document">पहचान व दस्तावेज</button>
-            <button type="button" class="filter-btn" data-category="land">भूमि व राजस्व</button>
-        </div>
-
-        <div class="cards-list" id="schemesList">
-            <div class="card" data-category="document">
-                <div class="card-info">
-                    <span class="card-badge">पहचान व दस्तावेज</span>
-                    <h3>राशन कार्ड (Ration Card)</h3>
-                    <p>खाद्य सुरक्षा सूची, राशन कार्ड विवरण और पात्रता चेक करें।</p>
-                </div>
-                <a href="https://food.rajasthan.gov.in/" class="btn-link">ओपन करें ↗</a>
+        <main class="container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="योजना या सेवा का नाम खोजें..." autocomplete="off">
             </div>
 
-            <div class="card" data-category="kisan">
-                <div class="card-info">
-                    <span class="card-badge">किसान कल्याण</span>
-                    <h3>पीएम किसान (PM Kisan)</h3>
-                    <p>किस्त स्टेटस, e-KYC और नया किसान पंजीकरण जांचें।</p>
-                </div>
-                <a href="https://pmkisan.gov.in/" class="btn-link">ओपन करें ↗</a>
+            <div class="category-filter">
+                <button type="button" class="filter-btn active" data-category="all">सभी योजनाएं</button>
+                <button type="button" class="filter-btn" data-category="kisan">किसान कल्याण</button>
+                <button type="button" class="filter-btn" data-category="pension">पेंशन व सुरक्षा</button>
+                <button type="button" class="filter-btn" data-category="document">पहचान व दस्तावेज</button>
+                <button type="button" class="filter-btn" data-category="land">भूमि व राजस्व</button>
             </div>
 
-            <div class="card" data-category="document">
-                <div class="card-info">
-                    <span class="card-badge">पहचान व दस्तावेज</span>
-                    <h3>जन आधार कार्ड (Jan Aadhaar)</h3>
-                    <p>जन आधार स्टेटस, ई-कार्ड डाउनलोड और सुधार की स्थिति।</p>
-                </div>
-                <a href="https://janaadhaar.rajasthan.gov.in/" class="btn-link">ओपन करें ↗</a>
+            <div class="cards-list" id="schemesList">
+                <!-- कार्ड्स JavaScript द्वारा स्वचालित लोड होंगे -->
             </div>
 
-            <div class="card" data-category="land">
-                <div class="card-info">
-                    <span class="card-badge">भूमि व राजस्व</span>
-                    <h3>अपना खाता / जमाबंदी (Apna Khata)</h3>
-                    <p>खसरा, खतौनी, जमाबंदी नकल और भू-अभिलेख ऑनलाइन देखें।</p>
-                </div>
-                <a href="https://apnakhata.rajasthan.gov.in/" class="btn-link">ओपन करें ↗</a>
+            <div class="no-result" id="noResult">
+                कोई योजना नहीं मिली। कृपया दोबारा खोजें।
             </div>
 
-            <div class="card" data-category="pension">
-                <div class="card-info">
-                    <span class="card-badge">पेंशन व सुरक्षा</span>
-                    <h3>सामाजिक सुरक्षा पेंशन (SSP)</h3>
-                    <p>वृद्धावस्था, विधवा एवं दिव्यांग पेंशन स्टेटस चेक करें।</p>
-                </div>
-                <a href="https://ssp.rajasthan.gov.in/" class="btn-link">ओपन करें ↗</a>
+            <footer>
+                <p>नोट: यह पोर्टल केवल आधिकारिक सरकारी वेबसाइट्स के सीधे लिंक प्रदान करता है।</p>
+                <p>संपर्क: <a href="mailto:infotechdipr.dsa@gmail.com">infotechdipr.dsa@gmail.com</a></p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- 2. योजना विवरण स्क्रीन (SPA Detail Screen) -->
+    <div id="detailScreen">
+        <header>
+            <h1 id="detailHeaderTitle">योजना का विवरण</h1>
+        </header>
+
+        <main class="container">
+            <div class="detail-top-nav">
+                <button type="button" class="back-nav-btn" onclick="navigateToHome()">← मुख्य सूची पर जाएं</button>
             </div>
 
-            <div class="card" data-category="kisan">
-                <div class="card-info">
-                    <span class="card-badge">किसान कल्याण</span>
-                    <h3>राज किसान साथी पोर्टल (Raj Kisan)</h3>
-                    <p>कृषि यंत्र अनुदान, तारबंदी, फव्वारा व बागवानी सब्सिडी।</p>
-                </div>
-                <a href="https://rajkisan.rajasthan.gov.in/" class="btn-link">ओपन करें ↗</a>
+            <div class="detail-card">
+                <h2 class="detail-title" id="schemeTitle">योजना का नाम</h2>
+                <p class="detail-desc" id="schemeDesc"></p>
+
+                <h3 class="detail-section-title">प्रमुख लाभ एवं सुविधाएं:</h3>
+                <ul class="detail-list" id="schemeBenefits"></ul>
+
+                <h3 class="detail-section-title">आवश्यक दस्तावेज:</h3>
+                <ul class="detail-list" id="schemeDocs"></ul>
+
+                <a id="officialPortalBtn" href="#" target="_blank" rel="noopener noreferrer" class="action-link-btn">
+                    आधिकारिक पोर्टल खोलें ↗
+                </a>
             </div>
-
-            <div class="card" data-category="document">
-                <div class="card-info">
-                    <span class="card-badge">पहचान व दस्तावेज</span>
-                    <h3>ई-मित्र पोर्टल (e-Mitra)</h3>
-                    <p>सभी सरकारी सेवाओं और टोकन स्टेटस की ऑनलाइन जांच।</p>
-                </div>
-                <a href="https://emitra.rajasthan.gov.in/" class="btn-link">ओपन करें ↗</a>
-            </div>
-        </div>
-
-        <div class="no-result" id="noResult">
-            कोई योजना नहीं मिली। कृपया दोबारा चेक करें।
-        </div>
-
-        <footer>
-            <p>नोट: यह पोर्टल केवल आधिकारिक सरकारी वेबसाइट्स के सीधे लिंक प्रदान करता है।</p>
-            <p>संपर्क: <a href="mailto:infotechdipr.dsa@gmail.com">infotechdipr.dsa@gmail.com</a></p>
-        </footer>
-    </main>
+        </main>
+    </div>
 
     <script>
-        // 1. कॉपी, लॉन्ग-प्रेस और राइट-क्लिक पूरी तरह ब्लॉक
+        // 1. कॉपी, लॉन्ग-प्रेस और राइट-क्लिक ब्लॉक
         document.addEventListener('contextmenu', function(e) { e.preventDefault(); }, false);
         document.addEventListener('selectstart', function(e) {
             if (e.target.id !== 'searchInput') { e.preventDefault(); }
@@ -276,59 +311,224 @@
             if (e.target.id !== 'searchInput') { e.preventDefault(); }
         }, false);
 
-        // 2. सुरक्षित बैक नेविगेशन (ताकि बैक दबाने पर ऐप तुरंत बंद न हो)
-        (function setupNavigationGuard() {
-            history.pushState({ page: 'home' }, "");
-            window.onpopstate = function(e) {
-                // जब यूजर पोर्टल पर हो और बैक दबाए तो बाहर निकलने से पहले अलर्ट
-                history.pushState({ page: 'home' }, "");
-            };
-        })();
+        // 2. सभी योजनाओं का केंद्रीय डेटाबेस
+        const schemesData = [
+            {
+                id: "ration-card",
+                category: "document",
+                categoryLabel: "पहचान व दस्तावेज",
+                name: "राशन कार्ड (Ration Card Status)",
+                shortDesc: "खाद्य सुरक्षा सूची, राशन कार्ड विवरण और पात्रता चेक करें।",
+                fullDesc: "राजस्थान खाद्य एवं नागरिक आपूर्ति विभाग के जरिए खाद्य सुरक्षा (NFSA) राशन कार्ड की पात्रता, नाम सूची और नए आवेदन की स्थिति जांचें।",
+                benefits: [
+                    "गेहूं व खाद्य सामग्री रियायती दरों पर प्राप्त करना।",
+                    "राशन कार्ड में नए सदस्य का नाम जोड़ना या संशोधन स्थिति देखना।",
+                    "राष्ट्रीय खाद्य सुरक्षा योजना (NFSA) पात्रता विवरण चेक करना।"
+                ],
+                docs: ["जन आधार कार्ड", "परिवार के सभी सदस्यों का पहचान पत्र", "आय प्रमाण पत्र"],
+                url: "https://food.rajasthan.gov.in/"
+            },
+            {
+                id: "pm-kisan",
+                category: "kisan",
+                categoryLabel: "किसान कल्याण",
+                name: "पीएम किसान सम्मान निधि (PM Kisan)",
+                shortDesc: "किस्त स्टेटस, e-KYC और नया किसान पंजीकरण जांचें।",
+                fullDesc: "प्रधानमंत्री किसान सम्मान निधि योजना के तहत पात्र किसान परिवारों को प्रति वर्ष ₹6,000 की वित्तीय सहायता तीन समान किस्तों में दी जाती है।",
+                benefits: [
+                    "प्रत्येक 4 माह में ₹2,000 की प्रत्यक्ष बैंक हस्तांतरण (DBT) किस्त।",
+                    "ऑनलाइन e-KYC एवं बेनिफिशियरी स्टेटस की सीधी जांच।",
+                    "नए किसान पंजीकरण व बैंक खाता सुधार की सुविधा।"
+                ],
+                docs: ["आधार कार्ड", "जमीन की जमाबंदी नकल", "बैंक पासबुक"],
+                url: "https://pmkisan.gov.in/"
+            },
+            {
+                id: "jan-aadhaar",
+                category: "document",
+                categoryLabel: "पहचान व दस्तावेज",
+                name: "जन आधार कार्ड (Jan Aadhaar Portal)",
+                shortDesc: "जन आधार स्टेटस, ई-कार्ड डाउनलोड और सुधार की स्थिति।",
+                fullDesc: "राजस्थान सरकार की 'एक नंबर, एक कार्ड, एक पहचान' योजना, जो राज्य के सभी लोक कल्याणकारी लाभों के लिए अनिवार्य एकल दस्तावेज है।",
+                benefits: [
+                    "सभी सरकारी योजनाओं के लाभ सीधे बैंक खाते में।",
+                    "परिवार की महिला मुखिया का सशक्तिकरण।",
+                    "डिजिटल ई-कार्ड तुरंत डाउनलोड करने की सुविधा।"
+                ],
+                docs: ["पहचान पत्र", "बैंक खाता विवरण", "परिवार के सभी सदस्यों के आवश्यक रिकॉर्ड"],
+                url: "https://janaadhaar.rajasthan.gov.in/"
+            },
+            {
+                id: "apna-khata",
+                category: "land",
+                categoryLabel: "भूमि व राजस्व",
+                name: "अपना खाता / जमाबंदी (Apna Khata)",
+                shortDesc: "खसरा, खतौनी, जमाबंदी नकल और भू-अभिलेख ऑनलाइन देखें।",
+                fullDesc: "राजस्व मंडल राजस्थान का ऑनलाइन भू-अभिलेख पोर्टल, जहाँ से अपनी भूमि की खसरा, खतौनी एवं नामांतरण स्थिति घर बैठे प्राप्त की जा सकती है।",
+                benefits: [
+                    "घर बैठे जमीन की प्रमाणित डिजिटल जमाबंदी नकल डाउनलोड।",
+                    "खसरा नक्शा और नामांतरण की स्थिति देखना।",
+                    "जमीन के स्वामित्व का ऑनलाइन सत्यापन।"
+                ],
+                docs: ["जमाबंदी/खसरा संख्या", "खातेदार का नाम", "जिले व तहसील का विवरण"],
+                url: "https://apnakhata.rajasthan.gov.in/"
+            },
+            {
+                id: "ssp-pension",
+                category: "pension",
+                categoryLabel: "पेंशन व सुरक्षा",
+                name: "सामाजिक सुरक्षा पेंशन (SSP Rajasthan)",
+                shortDesc: "वृद्धावस्था, विधवा एवं दिव्यांग पेंशन स्टेटस चेक करें।",
+                fullDesc: "सामाजिक न्याय एवं अधिकारिता विभाग द्वारा बुजुर्गों, विधवा महिलाओं एवं दिव्यांगजनों को मासिक आर्थिक सुरक्षा पेंशन प्रदान की जाती है।",
+                benefits: [
+                    "हर माह नियमित सामाजिक सुरक्षा पेंशन राशि।",
+                    "वार्षिक भौतिक सत्यापन की ऑनलाइन स्थिति चेक करना।",
+                    "पेंशन भुगतान का माहवार पासबुक विवरण।"
+                ],
+                docs: ["जन आधार कार्ड", "आयु प्रमाण पत्र", "आय प्रमाण पत्र / दिव्यांगता प्रमाण पत्र"],
+                url: "https://ssp.rajasthan.gov.in/"
+            },
+            {
+                id: "raj-kisan",
+                category: "kisan",
+                categoryLabel: "किसान कल्याण",
+                name: "राज किसान साथी पोर्टल (Raj Kisan)",
+                shortDesc: "कृषि यंत्र अनुदान, तारबंदी, फव्वारा व बागवानी सब्सिडी।",
+                fullDesc: "राजस्थान कृषि विभाग की एकल खिड़की, जहाँ से खेत की तारबंदी, कृषि यंत्र, डिग्गी, ग्रीनहाउस एवं फव्वारा संयंत्र अनुदान हेतु आवेदन किया जा सकता है।",
+                benefits: [
+                    "खेतों में तारबंदी हेतु सरकार द्वारा विशेष सब्सिडी।",
+                    "ट्रैक्टर व कृषि यंत्रों पर वित्तीय अनुदान।",
+                    "ड्रिप एवं स्प्रिंकलर सिंचाई प्रणालियों पर भारी छूट।"
+                ],
+                docs: ["जन आधार कार्ड", "जमीन की नवीनतम जमाबंदी नकल", "बैंक खाता विवरण"],
+                url: "https://rajkisan.rajasthan.gov.in/"
+            },
+            {
+                id: "e-mitra",
+                category: "document",
+                categoryLabel: "पहचान व दस्तावेज",
+                name: "ई-मित्र पोर्टल (e-Mitra Rajasthan)",
+                shortDesc: "सभी सरकारी सेवाओं और टोकन स्टेटस की ऑनलाइन जांच।",
+                fullDesc: "राज्य के नागरिकों के लिए 500 से अधिक सरकारी व गैर-सरकारी सेवाओं का डिजिटल प्लेटफॉर्म, जहाँ प्रमाण पत्र, बिल भुगतान और टोकन स्टेटस उपलब्ध हैं।",
+                benefits: [
+                    "जाति, मूल निवास एवं जन्म प्रमाण पत्र की ऑनलाइन स्थिति।",
+                    "ई-मित्र लेनदेन और रसीद पुनः प्रिंट करने की सुविधा।",
+                    "विद्युत व जल बिलों का त्वरित भुगतान।"
+                ],
+                docs: ["टोकन संख्या / ट्रांजैक्शन आईडी", "जन आधार कार्ड"],
+                url: "https://emitra.rajasthan.gov.in/"
+            }
+        ];
 
-        // 3. सर्च और कैटेगरी फिल्टर
-        (function() {
-            var searchInput = document.getElementById('searchInput');
-            var cards = document.querySelectorAll('.card');
-            var filterBtns = document.querySelectorAll('.filter-btn');
-            var noResult = document.getElementById('noResult');
-            var currentCategory = 'all';
+        // 3. कार्ड्स जनरेट करना
+        const schemesList = document.getElementById('schemesList');
+        function renderCards() {
+            schemesList.innerHTML = '';
+            schemesData.forEach(scheme => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.setAttribute('data-category', scheme.category);
+                card.innerHTML = `
+                    <div class="card-info" onclick="navigateToDetail('${scheme.id}')">
+                        <span class="card-badge">${scheme.categoryLabel}</span>
+                        <h3>${scheme.name}</h3>
+                        <p>${scheme.shortDesc}</p>
+                    </div>
+                    <button type="button" class="btn-view" onclick="navigateToDetail('${scheme.id}')">देखें ↗</button>
+                `;
+                schemesList.appendChild(card);
+            });
+        }
+        renderCards();
 
-            function filterItems() {
-                var query = searchInput.value.toLowerCase().trim();
-                var matchCount = 0;
+        // 4. SPA नेविगेशन एवं सुरक्षित बैक बटन लॉजिक
+        const homeScreen = document.getElementById('homeScreen');
+        const detailScreen = document.getElementById('detailScreen');
 
-                for (var i = 0; i < cards.length; i++) {
-                    var card = cards[i];
-                    var category = card.getAttribute('data-category');
-                    var content = card.textContent.toLowerCase();
+        // शुरुआती स्टेट सेट करें
+        history.replaceState({ page: 'home' }, "");
 
-                    var categoryMatches = (currentCategory === 'all' || category === currentCategory);
-                    var textMatches = content.indexOf(query) !== -1;
+        function navigateToDetail(schemeId) {
+            const scheme = schemesData.find(s => s.id === schemeId);
+            if (!scheme) return;
 
-                    if (categoryMatches && textMatches) {
-                        card.style.display = 'flex';
-                        matchCount++;
-                    } else {
-                        card.style.display = 'none';
-                    }
+            document.getElementById('detailHeaderTitle').innerText = scheme.name;
+            document.getElementById('schemeTitle').innerText = scheme.name;
+            document.getElementById('schemeDesc').innerText = scheme.fullDesc;
+
+            const benefitsList = document.getElementById('schemeBenefits');
+            benefitsList.innerHTML = scheme.benefits.map(b => `<li>${b}</li>`).join('');
+
+            const docsList = document.getElementById('schemeDocs');
+            docsList.innerHTML = scheme.docs.map(d => `<li>${d}</li>`).join('');
+
+            document.getElementById('officialPortalBtn').href = scheme.url;
+
+            homeScreen.style.display = 'none';
+            detailScreen.style.display = 'block';
+            window.scrollTo(0, 0);
+
+            // बैक बटन के लिए हिस्ट्री में एंट्री जोड़ें
+            history.pushState({ page: 'detail', id: schemeId }, scheme.name, "");
+        }
+
+        function navigateToHome() {
+            detailScreen.style.display = 'none';
+            homeScreen.style.display = 'block';
+            window.scrollTo(0, 0);
+            if (history.state && history.state.page === 'detail') {
+                history.back();
+            }
+        }
+
+        // फ़ोन का बैक बटन दबाने पर हैंडलर
+        window.onpopstate = function(event) {
+            if (detailScreen.style.display === 'block') {
+                detailScreen.style.display = 'none';
+                homeScreen.style.display = 'block';
+                window.scrollTo(0, 0);
+            }
+        };
+
+        // 5. सर्च एवं फ़िल्टर लॉजिक
+        const searchInput = document.getElementById('searchInput');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const noResult = document.getElementById('noResult');
+        let activeCategory = 'all';
+
+        function applyFilters() {
+            const query = (searchInput.value || '').trim().toLowerCase();
+            const cards = document.querySelectorAll('.card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                const text = card.innerText.toLowerCase();
+
+                const matchesCat = (activeCategory === 'all' || category === activeCategory);
+                const matchesSearch = text.includes(query);
+
+                if (matchesCat && matchesSearch) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
                 }
+            });
 
-                noResult.style.display = (matchCount === 0) ? 'block' : 'none';
-            }
+            noResult.style.display = (visibleCount === 0) ? 'block' : 'none';
+        }
 
-            searchInput.oninput = filterItems;
+        searchInput.addEventListener('input', applyFilters);
 
-            for (var j = 0; j < filterBtns.length; j++) {
-                filterBtns[j].onclick = function() {
-                    for (var k = 0; k < filterBtns.length; k++) {
-                        filterBtns[k].className = 'filter-btn';
-                    }
-                    this.className = 'filter-btn active';
-                    currentCategory = this.getAttribute('data-category');
-                    filterItems();
-                };
-            }
-        })();
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                activeCategory = this.getAttribute('data-category');
+                applyFilters();
+            });
+        });
     </script>
 </body>
 </html>
