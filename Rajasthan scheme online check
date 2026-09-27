@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>राजस्थान सरकारी योजनाएं पोर्टल</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
         }
         body {
             background-color: #f0f4f8;
             color: #333;
-            padding-bottom: 30px;
+            padding-bottom: 40px;
         }
         header {
             background: linear-gradient(135deg, #1e3c72, #2a5298);
@@ -25,11 +24,11 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         header h1 {
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             margin-bottom: 6px;
         }
         header p {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             opacity: 0.9;
         }
         .container {
@@ -38,50 +37,80 @@
             padding: 16px;
         }
         .search-box {
-            margin-bottom: 20px;
+            margin-bottom: 14px;
         }
         .search-box input {
             width: 100%;
-            padding: 14px 16px;
-            border-radius: 12px;
+            padding: 12px 14px;
+            border-radius: 10px;
             border: 1px solid #ccc;
-            font-size: 1rem;
+            font-size: 0.95rem;
             outline: none;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            background: #fff;
         }
         .search-box input:focus {
-            border-color: #2a5298;
+            border-color: #1e3c72;
+        }
+        /* कैटेगरी फिल्टर बटन्स */
+        .category-filter {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+            -webkit-overflow-scrolling: touch;
+        }
+        .filter-btn {
+            background: #ffffff;
+            border: 1px solid #d0d7de;
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #444;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .filter-btn.active {
+            background: #1e3c72;
+            color: #ffffff;
+            border-color: #1e3c72;
         }
         .cards-list {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
         }
         .card {
             background: #ffffff;
-            border-radius: 14px;
-            padding: 16px 18px;
+            border-radius: 12px;
+            padding: 14px 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.06);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
         }
         .card-info {
             flex: 1;
-            padding-right: 12px;
+            padding-right: 10px;
+        }
+        .card-badge {
+            display: inline-block;
+            font-size: 0.68rem;
+            background: #eef2f7;
+            color: #1e3c72;
+            padding: 2px 7px;
+            border-radius: 4px;
+            margin-bottom: 4px;
+            font-weight: 600;
         }
         .card-info h3 {
-            font-size: 1.05rem;
+            font-size: 0.98rem;
             color: #1e3c72;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
         .card-info p {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #666;
             line-height: 1.3;
         }
@@ -89,30 +118,28 @@
             background: #2a5298;
             color: #ffffff;
             text-decoration: none;
-            padding: 10px 16px;
-            border-radius: 10px;
-            font-size: 0.85rem;
+            padding: 9px 13px;
+            border-radius: 8px;
+            font-size: 0.8rem;
             font-weight: 600;
             white-space: nowrap;
-            transition: background 0.2s;
-        }
-        .btn-link:hover {
-            background: #1e3c72;
+            display: inline-block;
         }
         .no-result {
             text-align: center;
-            padding: 30px;
+            padding: 25px;
             color: #777;
             display: none;
+            font-size: 0.9rem;
         }
-        .footer-links {
+        footer {
             margin-top: 25px;
             text-align: center;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: #777;
             line-height: 1.5;
         }
-        .footer-links a {
+        footer a {
             color: #2a5298;
             text-decoration: none;
             font-weight: 600;
@@ -123,63 +150,87 @@
 
     <header>
         <h1>🏛️ राजस्थान जन कल्याण पोर्टल</h1>
-        <p>राशन कार्ड, पीएम किसान व अन्य मुख्य योजनाओं के डायरेक्ट लिंक</p>
+        <p>मुख्य सरकारी योजनाओं के डायरेक्ट लिंक</p>
     </header>
 
-    <div class="container">
+    <main class="container">
+        <!-- सर्च बार -->
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="योजना या सेवा का नाम खोजें..." onkeyup="filterSchemes()" aria-label="योजना या सेवा खोजें">
+            <input type="text" id="searchInput" placeholder="योजना या सेवा का नाम खोजें...">
         </div>
 
+        <!-- कैटेगरी फिल्टर बटन्स -->
+        <div class="category-filter">
+            <button type="button" class="filter-btn active" data-category="all">सभी योजनाएं</button>
+            <button type="button" class="filter-btn" data-category="kisan">किसान कल्याण</button>
+            <button type="button" class="filter-btn" data-category="pension">पेंशन व सुरक्षा</button>
+            <button type="button" class="filter-btn" data-category="document">पहचान व दस्तावेज</button>
+            <button type="button" class="filter-btn" data-category="land">भूमि व राजस्व</button>
+        </div>
+
+        <!-- कार्ड्स लिस्ट -->
         <div class="cards-list" id="schemesList">
-            <div class="card">
+            <div class="card" data-category="document">
                 <div class="card-info">
-                    <h3>राशन कार्ड (Ration Card Status)</h3>
+                    <span class="card-badge">पहचान व दस्तावेज</span>
+                    <h3>राशन कार्ड (Ration Card)</h3>
                     <p>खाद्य सुरक्षा सूची, राशन कार्ड विवरण और पात्रता चेक करें।</p>
                 </div>
-                <a href="https://food.rajasthan.gov.in/" target="_blank" rel="noopener noreferrer" class="btn-link">ओपन करें ↗</a>
+                <a href="https://food.rajasthan.gov.in/" class="btn-link">ओपन करें ↗</a>
             </div>
-            <div class="card">
+
+            <div class="card" data-category="kisan">
                 <div class="card-info">
-                    <h3>पीएम किसान सम्मान निधि (PM Kisan)</h3>
+                    <span class="card-badge">किसान कल्याण</span>
+                    <h3>पीएम किसान (PM Kisan)</h3>
                     <p>किस्त स्टेटस, e-KYC और नया किसान पंजीकरण जांचें।</p>
                 </div>
-                <a href="https://pmkisan.gov.in/" target="_blank" rel="noopener noreferrer" class="btn-link">ओपन करें ↗</a>
+                <a href="https://pmkisan.gov.in/" class="btn-link">ओपन करें ↗</a>
             </div>
-            <div class="card">
+
+            <div class="card" data-category="document">
                 <div class="card-info">
-                    <h3>जन आधार कार्ड (Jan Aadhaar Portal)</h3>
+                    <span class="card-badge">पहचान व दस्तावेज</span>
+                    <h3>जन आधार कार्ड (Jan Aadhaar)</h3>
                     <p>जन आधार स्टेटस, ई-कार्ड डाउनलोड और सुधार की स्थिति।</p>
                 </div>
-                <a href="https://janaadhaar.rajasthan.gov.in/" target="_blank" rel="noopener noreferrer" class="btn-link">ओपन करें ↗</a>
+                <a href="https://janaadhaar.rajasthan.gov.in/" class="btn-link">ओपन करें ↗</a>
             </div>
-            <div class="card">
+
+            <div class="card" data-category="land">
                 <div class="card-info">
+                    <span class="card-badge">भूमि व राजस्व</span>
                     <h3>अपना खाता / जमाबंदी (Apna Khata)</h3>
                     <p>खसरा, खतौनी, जमाबंदी नकल और भू-अभिलेख ऑनलाइन देखें।</p>
                 </div>
-                <a href="https://apnakhata.rajasthan.gov.in/" target="_blank" rel="noopener noreferrer" class="btn-link">ओपन करें ↗</a>
+                <a href="https://apnakhata.rajasthan.gov.in/" class="btn-link">ओपन करें ↗</a>
             </div>
-            <div class="card">
+
+            <div class="card" data-category="pension">
                 <div class="card-info">
-                    <h3>सामाजिक सुरक्षा पेंशन (SSP Rajasthan)</h3>
+                    <span class="card-badge">पेंशन व सुरक्षा</span>
+                    <h3>सामाजिक सुरक्षा पेंशन (SSP)</h3>
                     <p>वृद्धावस्था, विधवा एवं दिव्यांग पेंशन स्टेटस चेक करें।</p>
                 </div>
-                <a href="https://ssp.rajasthan.gov.in/" target="_blank" rel="noopener noreferrer" class="btn-link">ओपन करें ↗</a>
+                <a href="https://ssp.rajasthan.gov.in/" class="btn-link">ओपन करें ↗</a>
             </div>
-            <div class="card">
+
+            <div class="card" data-category="kisan">
                 <div class="card-info">
-                    <h3>राज किसान साथी पोर्टल (Raj Kisan Sathi)</h3>
+                    <span class="card-badge">किसान कल्याण</span>
+                    <h3>राज किसान साथी पोर्टल (Raj Kisan)</h3>
                     <p>कृषि यंत्र अनुदान, तारबंदी, फव्वारा व बागवानी सब्सिडी।</p>
                 </div>
-                <a href="https://rajkisan.rajasthan.gov.in/" target="_blank" rel="noopener noreferrer" class="btn-link">ओपन करें ↗</a>
+                <a href="https://rajkisan.rajasthan.gov.in/" class="btn-link">ओपन करें ↗</a>
             </div>
-            <div class="card">
+
+            <div class="card" data-category="document">
                 <div class="card-info">
-                    <h3>ई-मित्र पोर्टल (e-Mitra Rajasthan)</h3>
+                    <span class="card-badge">पहचान व दस्तावेज</span>
+                    <h3>ई-मित्र पोर्टल (e-Mitra)</h3>
                     <p>सभी सरकारी सेवाओं और टोकन स्टेटस की ऑनलाइन जांच।</p>
                 </div>
-                <a href="https://emitra.rajasthan.gov.in/" target="_blank" rel="noopener noreferrer" class="btn-link">ओपन करें ↗</a>
+                <a href="https://emitra.rajasthan.gov.in/" class="btn-link">ओपन करें ↗</a>
             </div>
         </div>
 
@@ -187,30 +238,56 @@
             कोई योजना नहीं मिली। कृपया दोबारा चेक करें।
         </div>
 
-        <div class="footer-links">
+        <footer>
             <p>नोट: यह पोर्टल केवल आधिकारिक सरकारी वेबसाइट्स के सीधे लिंक प्रदान करता है।</p>
-            <p>कोई समस्या या सुझाव? <a href="mailto:infotechdipr.dsa@gmail.com">हमें ईमेल करें</a></p>
-        </div>
-    </div>
+            <p>संपर्क: <a href="mailto:infotechdipr.dsa@gmail.com">infotechdipr.dsa@gmail.com</a></p>
+        </footer>
+    </main>
 
     <script>
-        function filterSchemes() {
-            const query = document.getElementById('searchInput').value.trim().toLowerCase();
-            const cards = document.querySelectorAll('.card');
-            let visibleCount = 0;
+        (function() {
+            var searchInput = document.getElementById('searchInput');
+            var cards = document.querySelectorAll('.card');
+            var filterBtns = document.querySelectorAll('.filter-btn');
+            var noResult = document.getElementById('noResult');
+            var currentCategory = 'all';
 
-            cards.forEach(card => {
-                const text = card.innerText.toLowerCase();
-                if (text.includes(query)) {
-                    card.style.display = 'flex';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
+            function filterItems() {
+                var query = searchInput.value.toLowerCase().trim();
+                var matchCount = 0;
+
+                for (var i = 0; i < cards.length; i++) {
+                    var card = cards[i];
+                    var category = card.getAttribute('data-category');
+                    var content = card.textContent.toLowerCase();
+
+                    var categoryMatches = (currentCategory === 'all' || category === currentCategory);
+                    var textMatches = content.indexOf(query) !== -1;
+
+                    if (categoryMatches && textMatches) {
+                        card.style.display = 'flex';
+                        matchCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
                 }
-            });
 
-            document.getElementById('noResult').style.display = visibleCount === 0 ? 'block' : 'none';
-        }
+                noResult.style.display = (matchCount === 0) ? 'block' : 'none';
+            }
+
+            searchInput.oninput = filterItems;
+
+            for (var j = 0; j < filterBtns.length; j++) {
+                filterBtns[j].onclick = function() {
+                    for (var k = 0; k < filterBtns.length; k++) {
+                        filterBtns[k].className = 'filter-btn';
+                    }
+                    this.className = 'filter-btn active';
+                    currentCategory = this.getAttribute('data-category');
+                    filterItems();
+                };
+            }
+        })();
     </script>
 </body>
 </html>
