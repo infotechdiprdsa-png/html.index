@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>राज सेवा - राजस्थान जन कल्याण पोर्टल</title>
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <title>राज सेवा - राजस्थान डायरेक्टरी एवं जन कल्याण पोर्टल</title>
     <style>
-        /* टेक्स्ट सेलेक्शन ब्लॉक, लेकिन क्लिक और लिंक्स चालू */
         *, *::before, *::after {
             margin: 0;
             padding: 0;
@@ -15,7 +16,6 @@
             user-select: none;
         }
 
-        /* इनपुट, बटन और लिंक्स पर क्लिक व टच हमेशा सक्रिय रखें */
         input, button, a, .card, .filter-btn, .btn-view, .action-link-btn {
             -webkit-touch-callout: default !important;
             pointer-events: auto !important;
@@ -50,7 +50,7 @@
         }
 
         .container {
-            max-width: 700px;
+            max-width: 760px;
             margin: 0 auto;
             padding: 16px;
         }
@@ -228,50 +228,47 @@
             line-height: 1.5;
             padding-bottom: 20px;
         }
-        footer a {
-            color: #2a5298;
-            text-decoration: none;
-            font-weight: 600;
-        }
     </style>
 </head>
 <body>
 
     <div id="homeScreen">
         <header>
-            <h1>🏛️ राजस्थान जन कल्याण पोर्टल</h1>
-            <p>मुख्य सरकारी योजनाओं के डायरेक्ट लिंक</p>
+            <h1>🏛️ राजस्थान जन कल्याण एवं सेवा डायरेक्टरी</h1>
+            <p>राज्य के सभी विभाग, आयोग, विश्वविद्यालय व जन सेवाओं के सुरक्षित लिंक</p>
         </header>
 
         <main class="container">
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="योजना या सेवा का नाम खोजें..." autocomplete="off">
+                <input type="text" id="searchInput" placeholder="विभाग, विश्वविद्यालय, आयोग या सेवा खोजें..." autocomplete="off">
             </div>
 
             <div class="category-filter">
-                <button type="button" class="filter-btn active" data-category="all">सभी योजनाएं</button>
-                <button type="button" class="filter-btn" data-category="kisan">किसान कल्याण</button>
-                <button type="button" class="filter-btn" data-category="pension">पेंशन व सुरक्षा</button>
-                <button type="button" class="filter-btn" data-category="document">पहचान व दस्तावेज</button>
-                <button type="button" class="filter-btn" data-category="land">भूमि व राजस्व</button>
+                <button type="button" class="filter-btn active" data-category="all">सभी</button>
+                <button type="button" class="filter-btn" data-category="recruitment">भर्ती व आयोग</button>
+                <button type="button" class="filter-btn" data-category="university">विश्वविद्यालय</button>
+                <button type="button" class="filter-btn" data-category="kisan">कृषि व उद्यानिकी</button>
+                <button type="button" class="filter-btn" data-category="revenue">राजस्व व भूमि</button>
+                <button type="button" class="filter-btn" data-category="services">नागरिक सेवाएं</button>
+                <button type="button" class="filter-btn" data-category="police">पुलिस व सुरक्षा</button>
+                <button type="button" class="filter-btn" data-category="welfare">सामाजिक कल्याण</button>
             </div>
 
             <div class="cards-list" id="schemesList"></div>
 
             <div class="no-result" id="noResult">
-                कोई योजना नहीं मिली। कृपया दोबारा खोजें।
+                कोई परिणाम नहीं मिला। कृपया अलग नाम से खोजें।
             </div>
 
             <footer>
-                <p>नोट: यह पोर्टल केवल आधिकारिक सरकारी वेबसाइट्स के सीधे लिंक प्रदान करता है।</p>
-                <p>संपर्क: <a href="mailto:infotechdipr.dsa@gmail.com">infotechdipr.dsa@gmail.com</a></p>
+                <p>🔒 100% सुरक्षित डायरेक्टरी | यह ऐप केवल आधिकारिक राजस्थान व भारत सरकार पोर्टल्स से जोड़ता है।</p>
             </footer>
         </main>
     </div>
 
     <div id="detailScreen">
         <header>
-            <h1 id="detailHeaderTitle">योजना का विवरण</h1>
+            <h1 id="detailHeaderTitle">पोर्टल विवरण</h1>
         </header>
 
         <main class="container">
@@ -280,13 +277,13 @@
             </div>
 
             <div class="detail-card">
-                <h2 class="detail-title" id="schemeTitle">योजना का नाम</h2>
+                <h2 class="detail-title" id="schemeTitle">पोर्टल का नाम</h2>
                 <p class="detail-desc" id="schemeDesc"></p>
 
-                <h3 class="detail-section-title">प्रमुख लाभ एवं सुविधाएं:</h3>
+                <h3 class="detail-section-title">प्रमुख सेवाएं एवं उपयोग:</h3>
                 <ul class="detail-list" id="schemeBenefits"></ul>
 
-                <h3 class="detail-section-title">आवश्यक दस्तावेज:</h3>
+                <h3 class="detail-section-title">ज़रूरी दस्तावेज़ / विवरण:</h3>
                 <ul class="detail-list" id="schemeDocs"></ul>
 
                 <a id="officialPortalBtn" href="#" target="_blank" rel="noopener noreferrer" class="action-link-btn">
@@ -297,166 +294,432 @@
     </div>
 
     <script>
-        // राइट क्लिक ब्लॉक (इनपुट को छोड़कर)
         document.addEventListener('contextmenu', function(e) {
             if (e.target.tagName !== 'INPUT') {
                 e.preventDefault();
             }
         });
 
-        const schemesData = [
+        const portalsData = [
+            // भर्ती व आयोग (Recruitment)
             {
-                id: "ration-card",
-                category: "document",
-                categoryLabel: "पहचान व दस्तावेज",
-                name: "राशन कार्ड (Ration Card Status)",
-                shortDesc: "खाद्य सुरक्षा सूची, राशन कार्ड विवरण और पात्रता चेक करें।",
-                fullDesc: "राजस्थान खाद्य एवं नागरिक आपूर्ति विभाग के जरिए खाद्य सुरक्षा (NFSA) राशन कार्ड की पात्रता, नाम सूची और नए आवेदन की स्थिति जांचें।",
+                id: "rpsc",
+                category: "recruitment",
+                categoryLabel: "भर्ती व आयोग",
+                name: "RPSC (राजस्थान लोक सेवा आयोग)",
+                shortDesc: "RAS, स्कूल व्याख्याता, कॉलेज व्याख्याता व अन्य राज्य स्तरीय परीक्षाएं।",
+                fullDesc: "राजस्थान लोक सेवा आयोग (RPSC) अजमेर द्वारा राज्य प्रशासनिक सेवा एवं प्रथम श्रेणी पदों की भर्ती अधिसूचना, परीक्षा परिणाम और साक्षात्कार कार्यक्रम।",
                 benefits: [
-                    "गेहूं व खाद्य सामग्री रियायती दरों पर प्राप्त करना।",
-                    "राशन कार्ड में नए सदस्य का नाम जोड़ना या संशोधन स्थिति देखना।",
-                    "राष्ट्रीय खाद्य सुरक्षा योजना (NFSA) पात्रता विवरण चेक करना।"
+                    "भर्ती विज्ञापन और सिलेबस डाउनलोड करना।",
+                    "ऑनलाइन आवेदन व प्रेस नोट देखना।",
+                    "आंसर की, मॉडल प्रश्न पत्र और कट-ऑफ जांचना।"
                 ],
-                docs: ["जन आधार कार्ड", "परिवार के सभी सदस्यों का पहचान पत्र", "आय प्रमाण पत्र"],
-                url: "https://food.rajasthan.gov.in/"
+                docs: ["SSO ID", "शैक्षणिक प्रमाण पत्र", "फोटो एवं हस्ताक्षर"],
+                url: "https://rpsc.rajasthan.gov.in/"
+            },
+            {
+                id: "rsmssb",
+                category: "recruitment",
+                categoryLabel: "भर्ती व आयोग",
+                name: "RSMSSB / RSSB (कर्मचारी चयन बोर्ड)",
+                shortDesc: "कृषि पर्यवेक्षक, CET, पटवार, LDC व अधीनस्थ सेवाओं की भर्तियां।",
+                fullDesc: "राजस्थान कर्मचारी चयन बोर्ड (जयपुर) द्वारा तृतीय श्रेणी और गैर-राजपत्रित पदों के लिए भर्ती परीक्षाएं, प्रवेश पत्र एवं परिणाम जारी किए जाते हैं।",
+                benefits: [
+                    "नवीनतम भर्ती परीक्षाओं का कैलेंडर देखना।",
+                    "एडमिट कार्ड एवं स्कोर कार्ड डाउनलोड करना।",
+                    "दस्तावेज सत्यापन और अंतिम चयन सूची देखना।"
+                ],
+                docs: ["SSO ID", "आवेदन संख्या", "जन्मतिथि"],
+                url: "https://rsmssb.rajasthan.gov.in/"
+            },
+            {
+                id: "sso-portal",
+                category: "recruitment",
+                categoryLabel: "भर्ती व आयोग",
+                name: "SSO Rajasthan (सिंगल साइन ऑन)",
+                shortDesc: "Recruitment Portal, छात्रवृत्ति, ई-मित्र व समस्त सरकारी लॉगिन।",
+                fullDesc: "राजस्थान सरकार का एकीकृत पहचान पोर्टल जिसके जरिए राज्य के सभी नागरिक वन-टाइम रजिस्ट्रेशन (OTR) और विभिन्न विभागीय अनुप्रयोगों का उपयोग करते हैं।",
+                benefits: [
+                    "एकल आईडी से सभी सरकारी परीक्षाओं में आवेदन।",
+                    "वन टाइम रजिस्ट्रेशन (OTR) सुविधा।",
+                    "विभागीय छात्रवृत्ति एवं योजनाओं का आवेदन।"
+                ],
+                docs: ["जन आधार", "आधार कार्ड", "मोबाइल नंबर"],
+                url: "https://sso.rajasthan.gov.in/"
+            },
+
+            // विश्वविद्यालय (Universities)
+            {
+                id: "uniraj",
+                category: "university",
+                categoryLabel: "विश्वविद्यालय",
+                name: "राजस्थान विश्वविद्यालय, जयपुर (UNIRAJ)",
+                shortDesc: "स्नातक (UG), स्नातकोत्तर (PG), परीक्षा फॉर्म, टाइम टेबल व परिणाम।",
+                fullDesc: "राजस्थान विश्वविद्यालय, जयपुर का आधिकारिक पोर्टल जहाँ से छात्र परीक्षा फॉर्म, एडमिट कार्ड, रिवैल्युएशन और परीक्षा परिणाम देख सकते हैं।",
+                benefits: [
+                    "वार्षिक एवं सेमेस्टर परीक्षा फॉर्म भरना।",
+                    "प्रवेश पत्र व परिणाम डाउनलोड करना।",
+                    "पाठ्यक्रम और शोध संबंधित जानकारी।"
+                ],
+                docs: ["रोल नंबर", "नामांकन संख्या (Enrollment No.)", "पंजीकृत मोबाइल नंबर"],
+                url: "https://www.uniraj.ac.in/"
+            },
+            {
+                id: "sknau",
+                category: "university",
+                categoryLabel: "विश्वविद्यालय",
+                name: "श्री कर्ण नरेंद्र कृषि विश्वविद्यालय (SKNAU जोबनेर)",
+                shortDesc: "कृषि शिक्षा, जेट (JET), शोध व कृषि विस्तार सेवाएं।",
+                fullDesc: "SKNAU जोबनेर कृषि विज्ञान में स्नातक, स्नातकोत्तर और शोध पाठ्यक्रमों के साथ-साथ किसानों के लिए उन्नत तकनीकी प्रसार उपलब्ध कराता है।",
+                benefits: [
+                    "कृषि प्रवेश परीक्षाएं एवं परिणाम विवरण।",
+                    "उन्नत बीज एवं कृषि अनुसंधान प्रकाशन।",
+                    "कृषि मेला और किसान प्रशिक्षण कार्यक्रम जानकारी।"
+                ],
+                docs: ["छात्र पंजीकरण विवरण", "शैक्षणिक दस्तावेज"],
+                url: "https://www.sknau.ac.in/"
+            },
+            {
+                id: "mpuat",
+                category: "university",
+                categoryLabel: "विश्वविद्यालय",
+                name: "MPUAT उदयपुर (महाराणा प्रताप कृषि वि.वि.)",
+                shortDesc: "कृषि, प्रौद्योगिकी, डेयरी व पशु विज्ञान अनुसंधान।",
+                fullDesc: "दक्षिणी राजस्थान में कृषि, बागवानी, डेयरी और कृषि अभियांत्रिकी का अग्रणी तकनीकी विश्वविद्यालय।",
+                benefits: [
+                    "तकनीकी कृषि डिग्री व प्रवेश सूचना।",
+                    "अनुसंधान परियोजनाएं व किसान परामर्श।",
+                    "परीक्षा परिणाम एवं अकादमिक कैलेंडर।"
+                ],
+                docs: ["आवेदन संख्या", "शैक्षणिक रिकॉर्ड"],
+                url: "https://www.mpuat.ac.in/"
+            },
+            {
+                id: "mdsu",
+                category: "university",
+                categoryLabel: "विश्वविद्यालय",
+                name: "MDSU अजमेर (महर्षि दयानंद सरस्वती वि.वि.)",
+                shortDesc: "डिग्री पाठ्यक्रम, एडमिट कार्ड, सिलेबस और परीक्षा परिणाम।",
+                fullDesc: "अजमेर, भीलवाड़ा, टोंक और नागौर क्षेत्र के उच्च शिक्षण महाविद्यालयों का नोडल विश्वविद्यालय पोर्टल।",
+                benefits: [
+                    "ऑनलाइन परीक्षा फॉर्म और एडमिट कार्ड।",
+                    "डिजिटल मार्कशीट और डिग्री सत्यापन।",
+                    "महाविद्यालय संबद्धता सूची।"
+                ],
+                docs: ["रोल नंबर", "चालान नंबर"],
+                url: "https://www.mdsuajmer.ac.in/"
+            },
+            {
+                id: "jnvu",
+                category: "university",
+                categoryLabel: "विश्वविद्यालय",
+                name: "JNVU जोधपुर (जय नारायण व्यास वि.वि.)",
+                shortDesc: "पश्चिमी राजस्थान का प्रमुख उच्च शिक्षा एवं विधि अध्ययन केंद्र।",
+                fullDesc: "कला, विज्ञान, वाणिज्य और विधि (Law) संकायों के लिए जोधपुर संभाग का प्रमुख राज्य विश्वविद्यालय पोर्टल।",
+                benefits: [
+                    "विधि (LLB) एवं नियमित पाठ्यक्रमों में प्रवेश फॉर्म।",
+                    "सेमेस्टर व वार्षिक परीक्षा परिणाम।",
+                    "ऑनलाइन मार्कशीट और माइग्रेशन आवेदन।"
+                ],
+                docs: ["छात्र रजिस्ट्रेशन आईडी", "जन्मतिथि"],
+                url: "https://www.jnvu.edu.in/"
+            },
+            {
+                id: "vmou",
+                category: "university",
+                categoryLabel: "विश्वविद्यालय",
+                name: "VMOU कोटा (वर्धमान महावीर खुला वि.वि.)",
+                shortDesc: "दूरस्थ शिक्षा (Distance Education), RSCIT, B.Ed व डिप्लोमा।",
+                fullDesc: "राजस्थान का मुक्त विश्वविद्यालय जो दूरस्थ शिक्षा के माध्यम से डिग्री, डिप्लोमा एवं RSCIT प्रमाणन प्रदान करता है।",
+                benefits: [
+                    "घर बैठे उच्च शिक्षा व डिग्री कार्यक्रम।",
+                    "RSCIT परीक्षा फॉर्म एवं परिणाम।",
+                    "सत्रवार अध्ययन सामग्री (SLM) डाउनलोड।"
+                ],
+                docs: ["स्कॉलर नंबर (Scholar No.)", "जन्मतिथि"],
+                url: "https://www.vmou.ac.in/"
+            },
+
+            // कृषि व उद्यानिकी (Kisan)
+            {
+                id: "raj-kisan",
+                category: "kisan",
+                categoryLabel: "कृषि व उद्यानिकी",
+                name: "राज किसान साथी पोर्टल (Raj Kisan)",
+                shortDesc: "कृषि यंत्र अनुदान, तारबंदी, फव्वारा, पाइपलाइन व डिग्गी सब्सिडी।",
+                fullDesc: "राजस्थान कृषि व उद्यानिकी विभाग का एकीकृत किसान पोर्टल, जहाँ खेत की तारबंदी, कृषि यंत्र और सौर ऊर्जा संयंत्र पर सब्सिडी मिलती है।",
+                benefits: [
+                    "खेतों में तारबंदी हेतु वित्तीय अनुदान।",
+                    "ड्रिप, स्प्रिंकलर और पाइपलाइन पर सब्सिडी।",
+                    "कृषि यंत्रों (थ्रेशर, रोटावेटर आदि) पर सरकारी सहायता।"
+                ],
+                docs: ["जन आधार कार्ड", "नवीनतम जमाबंदी व नक्शा ट्रेस", "बैंक पासबुक"],
+                url: "https://rajkisan.rajasthan.gov.in/"
             },
             {
                 id: "pm-kisan",
                 category: "kisan",
-                categoryLabel: "किसान कल्याण",
+                categoryLabel: "कृषि व उद्यानिकी",
                 name: "पीएम किसान सम्मान निधि (PM Kisan)",
-                shortDesc: "किस्त स्टेटस, e-KYC और नया किसान पंजीकरण जांचें।",
-                fullDesc: "प्रधानमंत्री किसान सम्मान निधि योजना के तहत पात्र किसान परिवारों को प्रति वर्ष ₹6,000 की वित्तीय सहायता तीन समान किस्तों में दी जाती है।",
+                shortDesc: "वार्षिक ₹6,000 वित्तीय सहायता, DBT किस्त व e-KYC।",
+                fullDesc: "पात्र कृषक परिवारों को हर चार महीने में ₹2,000 की तीन समान किस्तों में प्रत्यक्ष आर्थिक सहयोग।",
                 benefits: [
-                    "प्रत्येक 4 माह में ₹2,000 की प्रत्यक्ष बैंक हस्तांतरण (DBT) किस्त।",
-                    "ऑनलाइन e-KYC एवं बेनिफिशियरी स्टेटस की सीधी जांच।",
-                    "नए किसान पंजीकरण व बैंक खाता सुधार की सुविधा।"
+                    "बेनिफिशियरी स्टेटस और किस्त ट्रैकिंग।",
+                    "घर बैठे आधार आधारित फेस/OTP e-KYC।",
+                    "बैंक खाता डीबीटी सीडिंग जांचना।"
                 ],
-                docs: ["आधार कार्ड", "जमीन की जमाबंदी नकल", "बैंक पासबुक"],
+                docs: ["आधार कार्ड", "जमीन की जमाबंदी", "बैंक खाता"],
                 url: "https://pmkisan.gov.in/"
             },
-            {
-                id: "jan-aadhaar",
-                category: "document",
-                categoryLabel: "पहचान व दस्तावेज",
-                name: "जन आधार कार्ड (Jan Aadhaar Portal)",
-                shortDesc: "जन आधार स्टेटस, ई-कार्ड डाउनलोड और सुधार की स्थिति।",
-                fullDesc: "राजस्थान सरकार की 'एक नंबर, एक कार्ड, एक पहचान' योजना, जो राज्य के सभी लोक कल्याणकारी लाभों के लिए अनिवार्य एकल दस्तावेज है।",
-                benefits: [
-                    "सभी सरकारी योजनाओं के लाभ सीधे बैंक खाते में।",
-                    "परिवार की महिला मुखिया का सशक्तिकरण।",
-                    "डिजिटल ई-कार्ड तुरंत डाउनलोड करने की सुविधा।"
-                ],
-                docs: ["पहचान पत्र", "बैंक खाता विवरण", "परिवार के सभी सदस्यों के आवश्यक रिकॉर्ड"],
-                url: "https://janaadhaar.rajasthan.gov.in/"
-            },
+
+            // राजस्व व भूमि (Revenue & Land)
             {
                 id: "apna-khata",
-                category: "land",
-                categoryLabel: "भूमि व राजस्व",
-                name: "अपना खाता / जमाबंदी (Apna Khata)",
-                shortDesc: "खसरा, खतौनी, जमाबंदी नकल और भू-अभिलेख ऑनलाइन देखें।",
-                fullDesc: "राजस्व मंडल राजस्थान का ऑनलाइन भू-अभिलेख पोर्टल, जहाँ से अपनी भूमि की खसरा, खतौनी एवं नामांतरण स्थिति घर बैठे प्राप्त की जा सकती है।",
+                category: "revenue",
+                categoryLabel: "राजस्व व भूमि",
+                name: "अपना खाता / ई-धरती (Apna Khata)",
+                shortDesc: "खसरा, खतौनी, डिजिटल जमाबंदी नकल और भू-नक्शा।",
+                fullDesc: "राजस्व मंडल राजस्थान का ऑनलाइन पोर्टल, जहाँ से राज्य के किसी भी जिले और गांव की भूमि जमाबंदी नकल निकाली जा सकती है।",
                 benefits: [
-                    "घर बैठे जमीन की प्रमाणित डिजिटल जमाबंदी नकल डाउनलोड।",
-                    "खसरा नक्शा और नामांतरण की स्थिति देखना।",
-                    "जमीन के स्वामित्व का ऑनलाइन सत्यापन।"
+                    "प्रमाणित डिजिटल जमाबंदी डाउनलोड करना।",
+                    "जमीन का नामांतरण (Mutation) स्टेटस देखना।",
+                    "भू-स्वामित्व का ऑनलाइन सत्यापन।"
                 ],
-                docs: ["जमाबंदी/खसरा संख्या", "खातेदार का नाम", "जिले व तहसील का विवरण"],
+                docs: ["खसरा संख्या", "खातेदार का नाम", "जिले व तहसील का विवरण"],
                 url: "https://apnakhata.rajasthan.gov.in/"
             },
             {
-                id: "ssp-pension",
-                category: "pension",
-                categoryLabel: "पेंशन व सुरक्षा",
-                name: "सामाजिक सुरक्षा पेंशन (SSP Rajasthan)",
-                shortDesc: "वृद्धावस्था, विधवा एवं दिव्यांग पेंशन स्टेटस चेक करें।",
-                fullDesc: "सामाजिक न्याय एवं अधिकारिता विभाग द्वारा बुजुर्गों, विधवा महिलाओं एवं दिव्यांगजनों को मासिक आर्थिक सुरक्षा पेंशन प्रदान की जाती है।",
+                id: "bhunaksha",
+                category: "revenue",
+                categoryLabel: "राजस्व व भूमि",
+                name: "भू-नक्शा राजस्थान (BhuNaksha)",
+                shortDesc: "खेत और जमीन का डिजिटल नक्शा व सीमांकन रिपोर्ट।",
+                fullDesc: "राजस्व विभाग द्वारा खेत और भूखंड का जियो-रेफरेंस्ड नक्शा देखने और डाउनलोड करने का आधिकारिक मंच।",
                 benefits: [
-                    "हर माह नियमित सामाजिक सुरक्षा पेंशन राशि।",
-                    "वार्षिक भौतिक सत्यापन की ऑनलाइन स्थिति चेक करना।",
-                    "पेंशन भुगतान का माहवार पासबुक विवरण।"
+                    "खसरा संख्या अनुसार खेत का सटीक नक्शा।",
+                    "सीमावर्ती खसरों का मिलान व चौहद्दी जांचना।",
+                    "प्लॉट रिपोर्ट प्रिंट करना।"
                 ],
-                docs: ["जन आधार कार्ड", "आयु प्रमाण पत्र", "आय प्रमाण पत्र / दिव्यांगता प्रमाण पत्र"],
-                url: "https://ssp.rajasthan.gov.in/"
+                docs: ["जिला, तहसील, RI, पटवार हल्का", "खसरा नंबर"],
+                url: "https://bhunaksha.rajasthan.gov.in/"
             },
             {
-                id: "raj-kisan",
-                category: "kisan",
-                categoryLabel: "किसान कल्याण",
-                name: "राज किसान साथी पोर्टल (Raj Kisan)",
-                shortDesc: "कृषि यंत्र अनुदान, तारबंदी, फव्वारा व बागवानी सब्सिडी।",
-                fullDesc: "राजस्थान कृषि विभाग की एकल खिड़की, जहाँ से खेत की तारबंदी, कृषि यंत्र, डिग्गी, ग्रीनहाउस एवं फव्वारा संयंत्र अनुदान हेतु आवेदन किया जा सकता है।",
+                id: "epanjiyan",
+                category: "revenue",
+                categoryLabel: "राजस्व व भूमि",
+                name: "ई-पंजीयन (पंजीयन एवं मुद्रांक विभाग)",
+                shortDesc: "जमीन/मकान की रजिस्ट्री, डीएलसी दरें (DLC Rates) व स्टाम्प शुल्क।",
+                fullDesc: "संपत्ति के पंजीकरण, रजिस्ट्री दस्तावेज की नकल और क्षेत्रवार प्रचलित डीएलसी दरों की गणना का पोर्टल।",
                 benefits: [
-                    "खेतों में तारबंदी हेतु सरकार द्वारा विशेष सब्सिडी।",
-                    "ट्रैक्टर व कृषि यंत्रों पर वित्तीय अनुदान।",
-                    "ड्रिप एवं स्प्रिंकलर सिंचाई प्रणालियों पर भारी छूट।"
+                    "कॉलोनी/क्षेत्र की आवासीय व व्यावसायिक DLC दरें।",
+                    "रजिस्ट्री हेतु ऑनलाइन समय (Time Slot) बुक करना।",
+                    "ई-स्टाम्प सत्यापन।"
                 ],
-                docs: ["जन आधार कार्ड", "जमीन की नवीनतम जमाबंदी नकल", "बैंक खाता विवरण"],
-                url: "https://rajkisan.rajasthan.gov.in/"
+                docs: ["संपत्ति विवरण", "पंजीकरण दस्तावेज"],
+                url: "https://epanjiyan.nic.in/"
+            },
+
+            // नागरिक सेवाएं (Citizen Services)
+            {
+                id: "jan-aadhaar",
+                category: "services",
+                categoryLabel: "नागरिक सेवाएं",
+                name: "जन आधार पोर्टल (Jan Aadhaar)",
+                shortDesc: "'एक नंबर, एक कार्ड, एक पहचान' - ई-कार्ड व परिवार विवरण।",
+                fullDesc: "राजस्थान राज्य के सभी सामाजिक व आर्थिक लाभ प्राप्त करने हेतु अनिवार्य डिजिटल परिवार पहचान पत्र।",
+                benefits: [
+                    "डिजिटल जन आधार कार्ड डाउनलोड।",
+                    "परिवार के सदस्यों का ई-केवाईसी व संशोधन।",
+                    "डीबीटी योजनाओं के लाभ का सीधा ट्रांसफर।"
+                ],
+                docs: ["पहचान पत्र", "मोबाइल नंबर", "बैंक खाता विवरण"],
+                url: "https://janaadhaar.rajasthan.gov.in/"
             },
             {
                 id: "e-mitra",
-                category: "document",
-                categoryLabel: "पहचान व दस्तावेज",
+                category: "services",
+                categoryLabel: "नागरिक सेवाएं",
                 name: "ई-मित्र पोर्टल (e-Mitra Rajasthan)",
-                shortDesc: "सभी सरकारी सेवाओं और टोकन स्टेटस की ऑनलाइन जांच।",
-                fullDesc: "राज्य के नागरिकों के लिए 500 से अधिक सरकारी व गैर-सरकारी सेवाओं का डिजिटल प्लेटफॉर्म, जहाँ प्रमाण पत्र, बिल भुगतान और टोकन स्टेटस उपलब्ध हैं।",
+                shortDesc: "जाति, मूल निवास, जन्म प्रमाण पत्र, बिल भुगतान व सेवाएं।",
+                fullDesc: "नागरिकों को एक ही छत के नीचे 500 से अधिक लोक सेवाओं का डिजिटल लाभ देने वाला राजस्थान का प्रमुख ई-गवर्नेंस प्लेटफॉर्म।",
                 benefits: [
-                    "जाति, मूल निवास एवं जन्म प्रमाण पत्र की ऑनलाइन स्थिति।",
-                    "ई-मित्र लेनदेन और रसीद पुनः प्रिंट करने की सुविधा।",
-                    "विद्युत व जल बिलों का त्वरित भुगतान।"
+                    "प्रमाण पत्रों के आवेदन की ऑनलाइन स्थिति जांचना।",
+                    "टोकन नंबर से रसीद पुनः प्राप्त करना।",
+                    "उपयोगिता बिलों (बिजली, पानी) का भुगतान।"
                 ],
-                docs: ["टोकन संख्या / ट्रांजैक्शन आईडी", "जन आधार कार्ड"],
+                docs: ["टोकन संख्या / ट्रांजैक्शन आईडी", "जन आधार"],
                 url: "https://emitra.rajasthan.gov.in/"
+            },
+            {
+                id: "food-rajasthan",
+                category: "services",
+                categoryLabel: "नागरिक सेवाएं",
+                name: "खाद्य एवं नागरिक आपूर्ति (Ration Portal)",
+                shortDesc: "राशन कार्ड स्थिति, NFSA पात्रता सूची व राशन डीलर विवरण।",
+                fullDesc: "राष्ट्रीय खाद्य सुरक्षा योजना (NFSA) राशन कार्ड विवरण, राशन आवंटन तथा उचित मूल्य की दुकान (FPS) की जानकारी।",
+                benefits: [
+                    "राशन कार्ड में जुड़े सदस्यों के नाम जांचना।",
+                    "माहवार राशन उठाव (Transaction History) देखना।",
+                    "राशन कार्ड ब्लॉक/एक्टिव स्थिति जांचना।"
+                ],
+                docs: ["राशन कार्ड नंबर", "जन आधार कार्ड"],
+                url: "https://food.rajasthan.gov.in/"
+            },
+            {
+                id: "sampark-portal",
+                category: "services",
+                categoryLabel: "नागरिक सेवाएं",
+                name: "राजस्थान संपर्क (Sampark 181)",
+                shortDesc: "जन शिकायत निवारण, टोल फ्री 181 व समस्या ट्रैकिंग।",
+                fullDesc: "सरकारी विभागों से संबंधित किसी भी समस्या, भ्रष्टाचार या सेवा में देरी के खिलाफ शिकायत दर्ज कराने का केंद्रीयकृत मंच।",
+                benefits: [
+                    "बिना कार्यालय गए सीधे ऑनलाइन शिकायत दर्ज करना।",
+                    "शिकायत निवारण की दैनिक ट्रैकिंग।",
+                    "समाधान से असंतुष्ट होने पर उच्च स्तर पर अपील।"
+                ],
+                docs: ["शिकायत पंजीकरण संख्या", "मोबाइल नंबर"],
+                url: "https://sampark.rajasthan.gov.in/"
+            },
+
+            // पुलिस व सुरक्षा (Police & Justice)
+            {
+                id: "raj-police",
+                category: "police",
+                categoryLabel: "पुलिस व सुरक्षा",
+                name: "राजस्थान पुलिस पोर्टल (Rajasthan Police)",
+                shortDesc: "ऑनलाइन FIR, चरित्र प्रमाण पत्र (Police Verification) व शिकायत।",
+                fullDesc: "नागरिक सुरक्षा, गुमशुदगी रिपोर्ट, चरित्र सत्यापन और कानून व्यवस्था से संबंधित आधिकारिक पुलिस पोर्टल।",
+                benefits: [
+                    "घरेलू नौकर/किरायेदार व नौकरी हेतु चरित्र सत्यापन।",
+                    "चोरी व खोई हुई वस्तुओं की ई-लॉस्ट रिपोर्ट।",
+                    "महिला व बाल सुरक्षा हेल्पलाइन सेवाएं।"
+                ],
+                docs: ["पहचान पत्र", "निवास प्रमाण", "SSO ID"],
+                url: "https://police.rajasthan.gov.in/"
+            },
+            {
+                id: "raj-hc",
+                category: "police",
+                categoryLabel: "पुलिस व सुरक्षा",
+                name: "राजस्थान उच्च न्यायालय (Rajasthan High Court)",
+                shortDesc: "जोधपुर मुख्य पीठ व जयपुर खंडपीठ के केस स्टेटस व आदेश।",
+                fullDesc: "राजस्थान उच्च न्यायालय में चल रहे वादों की तारीख, वाद सूची (Cause List) और पारित निर्णयों का आधिकारिक पोर्टल।",
+                benefits: [
+                    "केस नंबर या पार्टी के नाम से केस स्टेटस देखना।",
+                    "दैनिक वाद सूची एवं कोर्ट ऑर्डर डाउनलोड।",
+                    "ई-फाइलिंग व न्याय संबंधी अधिसूचनाएं।"
+                ],
+                docs: ["केस नंबर / वर्ष", "वकील का नाम / पार्टी का नाम"],
+                url: "https://hcraj.nic.in/"
+            },
+
+            // सामाजिक कल्याण व पेंशन (Welfare)
+            {
+                id: "ssp-pension",
+                category: "welfare",
+                categoryLabel: "सामाजिक कल्याण",
+                name: "सामाजिक सुरक्षा पेंशन (SSP Rajasthan)",
+                shortDesc: "वृद्धावस्था, विधवा, एकल नारी एवं दिव्यांग पेंशन स्टेटस।",
+                fullDesc: "सामाजिक न्याय एवं अधिकारिता विभाग द्वारा बुजुर्गों और जरूरतमंद नागरिकों को दी जाने वाली मासिक पेंशन का पोर्टल।",
+                benefits: [
+                    "मासिक पेंशन भुगतान पासबुक देखना।",
+                    "वार्षिक भौतिक सत्यापन स्थिति चेक करना।",
+                    "नए पेंशन आवेदन की स्वीकृति ट्रैकिंग।"
+                ],
+                docs: ["PPO नंबर", "जन आधार कार्ड", "बैंक खाता संख्या"],
+                url: "https://ssp.rajasthan.gov.in/"
+            },
+            {
+                id: "palhar-portal",
+                category: "welfare",
+                categoryLabel: "सामाजिक कल्याण",
+                name: "पालनहार योजना पोर्टल (Palanhar)",
+                shortDesc: "अनाथ व निराश्रित बच्चों की शिक्षा व आर्थिक संबल योजना।",
+                fullDesc: "बच्चों की समुचित परवरिश, पोशाक और शिक्षा हेतु प्रतिमाह देय वित्तीय सहायता योजना की ऑनलाइन निगरानी।",
+                benefits: [
+                    "मासिक सहायता राशि की स्थिति देखना।",
+                    "वार्षिक नवीनीकरण व स्कूल अध्ययन प्रमाण पत्र अपलोड।",
+                    "नवीन आवेदन स्थिति जांच।"
+                ],
+                docs: ["जन आधार कार्ड", "स्कूल अध्ययन प्रमाण पत्र", "माता-पिता का प्रमाण"],
+                url: "https://sje.rajasthan.gov.in/"
             }
         ];
 
         const schemesList = document.getElementById('schemesList');
-        function renderCards() {
+        function renderCards(data) {
             schemesList.innerHTML = '';
-            schemesData.forEach(scheme => {
+            data.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'card';
-                card.setAttribute('data-category', scheme.category);
-                card.onclick = function() { navigateToDetail(scheme.id); };
-                card.innerHTML = `
-                    <div class="card-info">
-                        <span class="card-badge">${scheme.categoryLabel}</span>
-                        <h3>${scheme.name}</h3>
-                        <p>${scheme.shortDesc}</p>
-                    </div>
-                    <button type="button" class="btn-view">देखें ↗</button>
-                `;
+                card.setAttribute('data-category', item.category);
+                card.onclick = function() { navigateToDetail(item.id); };
+
+                const cardInfo = document.createElement('div');
+                cardInfo.className = 'card-info';
+
+                const badge = document.createElement('span');
+                badge.className = 'card-badge';
+                badge.textContent = item.categoryLabel;
+
+                const heading = document.createElement('h3');
+                heading.textContent = item.name;
+
+                const desc = document.createElement('p');
+                desc.textContent = item.shortDesc;
+
+                cardInfo.appendChild(badge);
+                cardInfo.appendChild(heading);
+                cardInfo.appendChild(desc);
+
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'btn-view';
+                btn.textContent = 'पोर्टल देखें ↗';
+
+                card.appendChild(cardInfo);
+                card.appendChild(btn);
                 schemesList.appendChild(card);
             });
         }
-        renderCards();
+        renderCards(portalsData);
 
         const homeScreen = document.getElementById('homeScreen');
         const detailScreen = document.getElementById('detailScreen');
 
-        function navigateToDetail(schemeId) {
-            const scheme = schemesData.find(s => s.id === schemeId);
-            if (!scheme) return;
+        function navigateToDetail(portalId) {
+            const portal = portalsData.find(s => s.id === portalId);
+            if (!portal) return;
 
-            document.getElementById('detailHeaderTitle').innerText = scheme.name;
-            document.getElementById('schemeTitle').innerText = scheme.name;
-            document.getElementById('schemeDesc').innerText = scheme.fullDesc;
+            document.getElementById('detailHeaderTitle').textContent = portal.name;
+            document.getElementById('schemeTitle').textContent = portal.name;
+            document.getElementById('schemeDesc').textContent = portal.fullDesc;
 
             const benefitsList = document.getElementById('schemeBenefits');
-            benefitsList.innerHTML = scheme.benefits.map(b => `<li>${b}</li>`).join('');
+            benefitsList.innerHTML = '';
+            portal.benefits.forEach(b => {
+                const li = document.createElement('li');
+                li.textContent = b;
+                benefitsList.appendChild(li);
+            });
 
             const docsList = document.getElementById('schemeDocs');
-            docsList.innerHTML = scheme.docs.map(d => `<li>${d}</li>`).join('');
+            docsList.innerHTML = '';
+            portal.docs.forEach(d => {
+                const li = document.createElement('li');
+                li.textContent = d;
+                docsList.appendChild(li);
+            });
 
-            document.getElementById('officialPortalBtn').href = scheme.url;
+            const officialBtn = document.getElementById('officialPortalBtn');
+            officialBtn.href = portal.url;
+            officialBtn.setAttribute('rel', 'noopener noreferrer');
 
             homeScreen.style.display = 'none';
             detailScreen.style.display = 'block';
             window.scrollTo(0, 0);
 
-            history.pushState({ page: 'detail', id: schemeId }, "");
+            history.pushState({ page: 'detail', id: portalId }, "");
         }
 
         function navigateToHome() {
@@ -487,7 +750,7 @@
 
             cards.forEach(card => {
                 const category = card.getAttribute('data-category');
-                const text = card.innerText.toLowerCase();
+                const text = card.textContent.toLowerCase();
 
                 const matchesCat = (activeCategory === 'all' || category === activeCategory);
                 const matchesSearch = text.includes(query);
